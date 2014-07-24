@@ -6,22 +6,25 @@ int followDistance=;
 
 int main()
 {
-	set_analog_pullup(leftET,0);
-	set_analog_pullup(rightET,0);
+	analog_et(1);
+	analog_et(3);
 	
-	while(analog(leftET)<followDistance && analog(rightET)<followDistance)
+	while(1)
 	{
-		motor(1,500);
-		motor(3,500);
-		msleep(500);
-	}
-	
-	while(analog(leftET)>followDistance && analog(rightET)<followDistance)
-	{
-		motor(1,-100);
-		motor(3,-100);
-		msleep(500);
 		
+		if(analog(leftET)<followDistance && analog(rightET)<followDistance)
+		{
+			motor(1,500);
+			motor(3,500);
+			msleep(500);
+		}
+		
+		else if(analog(leftET)>followDistance && analog(rightET)<followDistance)
+		{
+			motor(1,-100);
+			motor(3,-100);
+			msleep(500);
+		}
 	}
 	return 0;
 }
